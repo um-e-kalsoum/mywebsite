@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, JetBrains_Mono, STIX_Two_Text } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
@@ -14,6 +14,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const stixTwo = STIX_Two_Text({
+  variable: "--font-stix",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Um-e-Kalsoum Asif",
   description:
@@ -25,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${stixTwo.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script

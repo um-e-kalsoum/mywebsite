@@ -1,67 +1,63 @@
+/*
+ * All site content lives here. To add an entry, copy the TEMPLATE block above a
+ * list, paste it into the list, and fill it in. To remove one, delete its block.
+ * Order in each list is the order on the page.
+ */
+
 export const profile = {
   name: "Um-e-Kalsoum Asif",
   title: "Computer Science Student · Software Engineer",
   location: "Toronto, Ontario",
-  email: "asif.kalsoum@gmail.com",
+  email: "uasif@uoguelph.ca",
   github: "https://github.com/um-e-kalsoum",
   linkedin: "https://www.linkedin.com/in/um-e-kalsoum-asif-393701316/",
 };
 
+/* ---------------------------------------------------------------- Experience */
+
 export type ExperienceEntry = {
   role: string;
   company: string;
+  location: string; // leave "" to hide
   period: string;
-  bullets: string[];
 };
 
+/* TEMPLATE
+  {
+    role: "",
+    company: "",
+    location: "",
+    period: "",
+  },
+*/
 export const experience: ExperienceEntry[] = [
   {
     role: "Web Developer & Designer",
     company: "Dairy Modernization",
+    location: "", // TODO: add location
     period: "Dec 2025 – Jan 2026",
-    bullets: [
-      "Independently designed and developed a full public-facing website for a government-funded national dairy initiative.",
-      "Built and customized a WordPress platform tailored to farmers, researchers, policymakers, and industry partners.",
-      "Delivered a scalable digital hub designed to support a multi-year agricultural innovation project, built so non-technical stakeholders can easily update content.",
-    ],
   },
   {
     role: "Software Developer Intern",
     company: "University of Guelph OVC",
+    location: "Guelph, Ontario",
     period: "Sep 2025 – Dec 2025",
-    bullets: [
-      "Led the end-to-end redesign and modernization of a molecular biology resource website used by researchers.",
-      "Designed and implemented responsive mockups and full-stack prototypes using HTML, CSS, and JavaScript.",
-      "Structured large volumes of scientific content to improve discoverability, produced technical documentation, and conducted client training sessions.",
-    ],
   },
   {
     role: "Graphic Designer",
     company: "Guelph Cyber Security Society",
+    location: "Guelph, Ontario",
     period: "Sep 2025 – Present",
-    bullets: [
-      "Designed visual assets including social media graphics and event promotions.",
-      "Collaborated with the executive team on consistent branding aligned with the society's identity, increasing event visibility and member engagement.",
-    ],
   },
   {
     role: "Hackathon Organizer",
     company: "Google Developer Groups",
+    location: "Guelph, Ontario",
     period: "Sep 2024 – Present",
-    bullets: [
-      "Drove sponsorship strategy for GDG initiatives by researching potential partners and aligning proposals.",
-      "Built and sustained relationships with external organizations to ensure consistent funding and financial sustainability.",
-    ],
   },
 ];
 
-export const education = {
-  school: "University of Guelph",
-  degree: "Bachelor of Computing, Computer Science",
-  detail:
-    "Specialization in Cybersecurity with a minor in Mathematics.",
-  period: "2024 – 2028",
-};
+/* ------------------------------------------------------------------ Projects */
 
 export type Project = {
   name: string;
@@ -71,6 +67,15 @@ export type Project = {
   link: string;
 };
 
+/* TEMPLATE
+  {
+    name: "",
+    tagline: "",
+    description: "",
+    tech: ["", ""],
+    link: "https://github.com/um-e-kalsoum/",
+  },
+*/
 export const projects: Project[] = [
   {
     name: "Signify",
@@ -106,8 +111,48 @@ export const projects: Project[] = [
   },
 ];
 
+/* ----------------------------------------------------------------- Education */
 
-export const leadership = [
+export type EducationEntry = {
+  school: string;
+  degree: string;
+  detail: string; // leave "" to hide
+  period: string;
+};
+
+/* TEMPLATE
+  {
+    school: "",
+    degree: "",
+    detail: "",
+    period: "",
+  },
+*/
+export const education: EducationEntry[] = [
+  {
+    school: "University of Guelph",
+    degree: "Bachelor of Computing, Computer Science",
+    detail: "Specialization in Cybersecurity with a minor in Mathematics.",
+    period: "2024 – 2028",
+  },
+];
+
+/* ---------------------------------------------------------------- Leadership */
+
+export type LeadershipEntry = {
+  name: string;
+  org: string;
+  description: string;
+};
+
+/* TEMPLATE
+  {
+    name: "",
+    org: "",
+    description: "",
+  },
+*/
+export const leadership: LeadershipEntry[] = [
   {
     name: "gryphCTF",
     org: "Guelph Cyber Security Society",
@@ -122,9 +167,35 @@ export const leadership = [
   },
 ];
 
+/* -------------------------------------------------------------------- Skills */
+
+/* TEMPLATE: add a group as a new line, or add items to an existing group
+  "Group name": ["", ""],
+*/
 export const skills: Record<string, string[]> = {
   Languages: ["Bash", "C", "HTML/CSS", "Java", "JavaScript", "Python", "SQL", "TypeScript"],
   "Frameworks & Libraries": ["FastAPI", "JUnit", "MediaPipe", "Next.js", "Node.js", "OpenCV", "Pandas", "React", "scikit-learn", "Tailwind CSS"],
   Databases: ["MongoDB", "MySQL", "PostgreSQL"],
   "Tools & Platforms": ["Bitbucket", "Confluence", "Docker", "Git", "Jenkins", "Jira", "Linux", "Tableau", "WordPress"],
 };
+
+/* ------------------------------------------------------------------- Contact */
+
+export type ContactLink = {
+  label: string; // short key shown on the left, e.g. "email"
+  display: string; // text shown to visitors
+  href: string;
+};
+
+/* TEMPLATE
+  {
+    label: "",
+    display: "",
+    href: "https://",
+  },
+*/
+export const contactLinks: ContactLink[] = [
+  { label: "email", display: profile.email, href: `mailto:${profile.email}` },
+  { label: "github", display: "github.com/um-e-kalsoum", href: profile.github },
+  { label: "linkedin", display: "linkedin.com/in/um-e-kalsoum-asif", href: profile.linkedin },
+];

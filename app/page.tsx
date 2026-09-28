@@ -1,7 +1,8 @@
-import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
+import { CopyButton } from "@/components/copy-button";
 import { IrisText } from "@/components/iris-text";
-import { BloomRose, MathLab, Results } from "@/components/math";
-import { education, experience, leadership, profile, projects, skills } from "@/lib/data";
+import { BloomRose } from "@/components/math";
+import { contactLinks, education, experience, leadership, profile, projects, skills } from "@/lib/data";
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -20,8 +21,8 @@ function LinkedinIcon({ className }: { className?: string }) {
 }
 
 const SYMBOLS: Record<string, string> = {
-  Experience: "Σ", Education: "ε", Projects: "∫",
-  Leadership: "∇", Skills: "λ", "Math Lab": "∮",
+  Experience: "Σ", Projects: "∫", Education: "ε",
+  Leadership: "∇", Skills: "λ", Contact: "∴",
 };
 
 function SectionHeading({ title }: { title: string }) {
@@ -36,18 +37,23 @@ function SectionHeading({ title }: { title: string }) {
 function Header() {
   return (
     <header>
-      <p className="mb-3 font-mono text-sm text-accent">
-        <IrisText text="f(x) = computer science + cybersecurity + math" />
+      <p className="mb-2 font-serif text-lg">
+        <span className="font-medium tracking-wide [font-variant:small-caps]">Definition 1.1</span>{" "}
+        <span className="italic text-muted">(the author).</span>
       </p>
-      <h1 className="text-3xl font-semibold tracking-tight">
+      <h1 className="font-serif text-5xl leading-[1.02] font-semibold text-balance italic md:text-6xl">
         <IrisText text={profile.name} />
       </h1>
-      <p className="mt-2 text-muted">
-        <IrisText text={profile.title} />
-      </p>
-      <p className="mt-1 flex items-center gap-1.5 text-sm text-muted">
-        <MapPin className="size-3.5" aria-hidden />
-        <IrisText text={profile.location} />
+      
+      <p className="mt-2 flex flex-wrap gap-x-5 gap-y-1 font-code text-sm text-muted">
+        <span>
+          <span className="mr-2 text-accent">role</span>
+          <IrisText text={profile.title} />
+        </span>
+        <span>
+          <span className="mr-2 text-accent">loc</span>
+          <IrisText text={profile.location} />
+        </span>
       </p>
       <div className="mt-5 flex items-center gap-4">
         <a
@@ -76,6 +82,7 @@ function Header() {
           <Mail className="size-5" />
         </a>
       </div>
+      <p aria-label="Q.E.D." className="-mt-6 text-right font-serif text-xl text-accent">∎</p>
     </header>
   );
 }
@@ -84,55 +91,26 @@ function Experience() {
   return (
     <section id="experience" className="axis pt-8">
       <SectionHeading title="Experience" />
-      <div className="max-w-2xl space-y-10">
+      <ol className="max-w-2xl divide-y divide-subtle">
         {experience.map((job) => (
-          <article key={`${job.company}-${job.role}`}>
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+          <li
+            key={`${job.company}-${job.role}`}
+            className="grid gap-x-6 gap-y-0.5 py-4 first:pt-0 sm:grid-cols-[1fr_auto]"
+          >
+            <div>
               <h3 className="font-medium">
                 <IrisText text={job.role} />
               </h3>
-              <span className="font-mono text-xs text-muted">
-                <IrisText text={job.period} />
-              </span>
+              <p className="text-sm text-muted">
+                <IrisText text={job.location ? `${job.company} · ${job.location}` : job.company} />
+              </p>
             </div>
-            <p className="mt-0.5 text-sm text-muted">
-              <IrisText text={job.company} />
-            </p>
-            <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-foreground/75">
-              {job.bullets.map((bullet) => (
-                <li key={bullet} className="flex gap-2">
-                  <span aria-hidden className="select-none text-subtle">
-                    ·
-                  </span>
-                  <IrisText text={bullet} />
-                </li>
-              ))}
-            </ul>
-          </article>
+            <span className="font-code text-xs text-muted tabular-nums sm:pt-1">
+              <IrisText text={job.period} />
+            </span>
+          </li>
         ))}
-      </div>
-    </section>
-  );
-}
-
-function Education() {
-  return (
-    <section id="education" className="axis pt-8">
-      <SectionHeading title="Education" />
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-        <h3 className="font-medium">
-          <IrisText text={education.school} />
-        </h3>
-        <span className="font-mono text-xs text-muted">
-          <IrisText text={education.period} />
-        </span>
-      </div>
-      <p className="mt-0.5 text-sm text-muted">
-        <IrisText text={education.degree} />
-      </p>
-      <p className="mt-2 text-sm leading-relaxed text-foreground/75">
-        <IrisText text={education.detail} />
-      </p>
+      </ol>
     </section>
   );
 }
@@ -182,6 +160,35 @@ function Projects() {
   );
 }
 
+function Education() {
+  return (
+    <section id="education" className="axis pt-8">
+      <SectionHeading title="Education" />
+      <div className="max-w-2xl space-y-8">
+        {education.map((ed) => (
+          <article key={`${ed.school}-${ed.degree}`}>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h3 className="font-medium">
+                <IrisText text={ed.school} />
+              </h3>
+              <span className="font-code text-xs text-muted tabular-nums">
+                <IrisText text={ed.period} />
+              </span>
+            </div>
+            <p className="mt-0.5 text-sm text-muted">
+              <IrisText text={ed.degree} />
+            </p>
+            {ed.detail && (
+              <p className="mt-2 text-sm leading-relaxed text-foreground/75">
+                <IrisText text={ed.detail} />
+              </p>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 function Leadership() {
   return (
@@ -220,30 +227,48 @@ function Skills() {
   );
 }
 
-function MathSection() {
+function Contact() {
   return (
-    <section id="math-lab" className="axis pt-8">
-      <SectionHeading title="Math Lab" />
-      <p className="mb-8 max-w-lg text-sm text-muted">Calculus 2 and 3 ideas, drawn live. Drag the sliders.</p>
-      <MathLab />
-      <Results />
+    <section id="contact" className="axis pt-8">
+      <SectionHeading title="Contact" />
+      <p className="font-serif text-3xl text-balance italic sm:text-4xl">
+        ∀ idea, <span className="text-accent">∃</span> a conversation.
+      </p>
+      <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted">
+        For every idea there&apos;s a conversation worth having. Reach out to connect, discuss
+        opportunities, or collaborate on a project. Email is the fastest way to reach me.
+      </p>
+      <ul className="mt-8 max-w-xl divide-y divide-subtle border-y border-subtle font-code text-sm">
+        {contactLinks.map((link) => {
+          const isMail = link.href.startsWith("mailto:");
+          return (
+            <li key={link.label} className="flex items-center gap-4 py-3">
+              <span className="w-20 shrink-0 text-accent">{link.label}</span>
+              <a
+                href={link.href}
+                {...(isMail ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+                className="group flex min-w-0 flex-1 items-center justify-between gap-3 transition-colors hover:text-accent"
+              >
+                <span className="truncate">{link.display}</span>
+                <ArrowUpRight
+                  aria-hidden
+                  className="size-4 shrink-0 text-muted transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+                />
+              </a>
+              {isMail && <CopyButton value={link.href.slice("mailto:".length)} label={link.label} />}
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
 
 function Footer() {
   return (
-    <footer id="contact" className="border-t border-subtle pt-8 pb-4 text-sm text-muted">
-      <p className="flex flex-wrap gap-x-1.5">
-        <IrisText text="Reach out if you'd like to connect, discuss opportunities, or collaborate on projects at" />
-        <a
-          href={`mailto:${profile.email}`}
-          className="text-foreground underline decoration-subtle underline-offset-4 transition-colors hover:decoration-foreground"
-        >
-          <IrisText text={profile.email} />
-        </a>
-      </p>
-      <p aria-label="Q.E.D." className="mt-6 text-right text-lg text-accent">∎</p>
+    <footer className="flex items-baseline justify-between border-t border-subtle pt-6 pb-4 font-code text-xs text-muted">
+      <span>© {new Date().getFullYear()} {profile.name}</span>
+      <span aria-label="Q.E.D." className="font-serif text-lg text-accent">∎</span>
     </footer>
   );
 }
@@ -257,11 +282,11 @@ export default function Home() {
           <BloomRose className="w-full" />
         </div>
         <Experience />
-        <Education />
         <Projects />
+        <Education />
         <Leadership />
         <Skills />
-        <MathSection />
+        <Contact />
         <Footer />
       </div>
     </main>

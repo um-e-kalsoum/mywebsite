@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 
 const LINKS = [
   ["experience", "Experience"],
-  ["education", "Education"],
   ["projects", "Projects"],
+  ["education", "Education"],
   ["leadership", "Leadership"],
   ["skills", "Skills"],
-  ["math-lab", "Math Lab"],
   ["contact", "Contact"],
 ] as const;
 
@@ -29,8 +28,14 @@ export function Nav() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-subtle bg-background/80 backdrop-blur">
-      <nav aria-label="Sections" className="mx-auto flex max-w-4xl items-center gap-1 overflow-x-auto py-3 pr-16 pl-6 text-sm">
-        <a href="#top" className="mr-3 shrink-0 font-mono text-muted transition-colors hover:text-foreground">uek</a>
+      <nav aria-label="Sections" className="mx-auto flex max-w-4xl items-center gap-1 overflow-x-auto py-3 pr-16 pl-6 font-code text-[13px]">
+        <a
+          href="#top"
+          aria-label="Um-e-Kalsoum Asif, back to top"
+          className="mr-3 shrink-0 font-serif text-lg leading-none italic transition-colors hover:text-accent"
+        >
+          U<span className="mx-px not-italic text-accent">∪</span>A
+        </a>
         {LINKS.map(([id, label]) => (
           <a
             key={id}
