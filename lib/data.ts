@@ -182,68 +182,90 @@ export const projects: Project[] = [
     tagline: "Terminal-based puzzle adventure",
     description:
       "Puzzle adventure game built with a C engine and a Python curses interface, featuring interactive elements and persistent player statistics.",
-    tech: ["C", "Python", "curses"],
-    image: "",
+    tech: ["C", "Python", "curses", "Docker"],
+    image: "/logos/terminal-project.png",
     site: "",
     github: "https://github.com/um-e-kalsoum/Treasure-Runner",
     devpost: "",
-    demo: "",
+    demo: "https://www.youtube.com/watch?v=g0Vms24-Zxg",
   },
 ];
 
 /* ----------------------------------------------------------------- Education */
 
 export type EducationEntry = {
-  school: string;
   degree: string;
-  detail: string; // leave "" to hide
+  school: string;
+  location: string; // leave "" to hide
   period: string;
+  highlights: string[]; // shown as pink tags, e.g. specialization, minor, honours. [] to hide
+  /* School logo. Put the image in public/logos/ and write its path, e.g. "/logos/uoguelph.png".
+     Square images look best. Leave "" to show the school's initials. */
+  logo: string;
 };
 
 /* TEMPLATE
   {
-    school: "",
     degree: "",
-    detail: "",
+    school: "",
+    location: "",
     period: "",
+    highlights: ["", ""],
+    logo: "",
   },
 */
 export const education: EducationEntry[] = [
   {
+    degree: "Bachelor of Computing Co-op, Computer Science",
     school: "University of Guelph",
-    degree: "Bachelor of Computing, Computer Science",
-    detail: "Specialization in Cybersecurity with a minor in Mathematics.",
-    period: "2024 – 2028",
+    location: "Guelph, ON",
+    period: "Expected 2029",
+    highlights: ["Cybersecurity specialization", "Mathematics minor"],
+    logo: "/logos/uofg.png",
   },
 ];
 
 /* ---------------------------------------------------------------- Leadership */
 
 export type LeadershipEntry = {
-  name: string;
-  org: string;
+  org: string; // club or organization, shown as the card title
+  role: string; // your role(s), e.g. "gryphCTF Organizer · Graphic Designer"
   description: string;
+  period: string;
+  /* Club logo or photo. Put the image in public/logos/ and write its path, e.g. "/logos/gcss.png".
+     Square images look best. Leave "" to show the club's initials. */
+  logo: string;
+  website: string; // club website; leave "" to hide the button
 };
 
 /* TEMPLATE
   {
-    name: "",
     org: "",
+    role: "",
     description: "",
+    period: "",
+    logo: "",
+    website: "https://",
   },
 */
 export const leadership: LeadershipEntry[] = [
   {
-    name: "gryphCTF",
     org: "Guelph Cyber Security Society",
+    role: "gryphCTF Organizer",
     description:
       "Organized the University of Guelph's first capture-the-flag competition with a $1,000+ prize pool, then wrote the official walkthrough covering each challenge's vulnerability and exploitation technique.",
+    period: "September 2025 – Present",
+    logo: "/logos/gcss-logo.png",
+    website: "https://guelphcss.com/", // TODO: add the club website
   },
   {
-    name: "Hackathon Organizer",
     org: "Google Developer Groups",
+    role: "Hackathon Organizer",
     description:
       "Led sponsorship research and partner relationships to keep student hackathons funded. Co-built BeautyHackxs, a GDGHacks '25 winner.",
+    period: "September 2025 – April 2026",
+    logo: "/logos/gdg-logo.png",
+    website: "https://www.gdgguelph.com/", // TODO: add the club website
   },
 ];
 
@@ -262,7 +284,7 @@ export const skills: Record<string, string[]> = {
 /* ------------------------------------------------------------------- Contact */
 
 export type ContactLink = {
-  label: string; // short key shown on the left, e.g. "email"
+  label: string; // small heading on the card; "email", "github" and "linkedin" get their own icons, anything else gets a globe
   display: string; // text shown to visitors
   href: string;
 };

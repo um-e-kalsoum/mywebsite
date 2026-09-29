@@ -1,6 +1,5 @@
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Globe, Mail } from "lucide-react";
 import Image from "next/image";
-import { CopyButton } from "@/components/copy-button";
 import { IrisText } from "@/components/iris-text";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { BloomRose } from "@/components/math";
@@ -147,28 +146,34 @@ function Education() {
   return (
     <section id="education" className="axis pt-8">
       <SectionHeading title="Education" />
-      <div className="max-w-2xl space-y-8">
+      <ol className="divide-y divide-subtle">
         {education.map((ed) => (
-          <article key={`${ed.school}-${ed.degree}`}>
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-              <h3 className="font-semibold tracking-tight">
-                {ed.school}
-              </h3>
-              <span className="font-code text-xs text-muted tabular-nums">
-                {ed.period}
-              </span>
+          <li key={`${ed.school}-${ed.degree}`} className="flex items-start gap-4 py-4 first:pt-0">
+            <CompanyLogo src={ed.logo} company={ed.school} />
+            <div className="flex min-w-0 flex-1 flex-col gap-2.5">
+              <div className="grid gap-x-6 gap-y-0.5 sm:grid-cols-[1fr_auto]">
+                <div>
+                  <h3 className="text-[15px] font-semibold tracking-tight">{ed.degree}</h3>
+                  <p className="text-[13px] text-muted">
+                    <span className="text-accent">@</span> {ed.school}
+                    {ed.location && ` · ${ed.location}`}
+                  </p>
+                </div>
+                <span className="text-xs text-muted tabular-nums sm:pt-1">{ed.period}</span>
+              </div>
+              {ed.highlights.length > 0 && (
+                <ul className="flex flex-wrap gap-1.5">
+                  {ed.highlights.map((h) => (
+                    <li key={h} className="rounded border border-accent/45 bg-accent/10 px-1.5 py-0.5 text-[11px] text-accent">
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
-            <p className="mt-0.5 text-sm text-muted">
-              {ed.degree}
-            </p>
-            {ed.detail && (
-              <p className="mt-2 text-sm leading-relaxed text-foreground/75">
-                {ed.detail}
-              </p>
-            )}
-          </article>
+          </li>
         ))}
-      </div>
+      </ol>
     </section>
   );
 }
@@ -179,10 +184,31 @@ function Leadership() {
       <SectionHeading title="Leadership" />
       <div className="grid gap-4 sm:grid-cols-2">
         {leadership.map((l) => (
-          <article key={l.name} className="rounded-lg border border-subtle bg-background/60 p-5">
-            <h3 className="font-semibold tracking-tight">{l.name}</h3>
-            <p className="mt-0.5 text-sm text-muted">{l.org}</p>
-            <p className="mt-3 text-sm leading-relaxed text-foreground/75">{l.description}</p>
+          <article key={`${l.org}-${l.role}`} className="flex flex-col rounded-lg border border-subtle bg-background/60">
+            <div className="flex items-center gap-3 px-5 pt-5">
+              <CompanyLogo src={l.logo} company={l.org} />
+              <div className="min-w-0">
+                <h3 className="font-semibold tracking-tight">{l.org}</h3>
+                <p className="text-[13px] text-muted">{l.role}</p>
+              </div>
+            </div>
+            <p className="flex-1 px-5 py-4 text-sm leading-relaxed text-foreground/75">{l.description}</p>
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-subtle px-5 py-3">
+              {l.website ? (
+                <a
+                  href={l.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-md border border-subtle bg-background px-2.5 py-1 text-xs transition-colors hover:border-accent hover:text-accent"
+                >
+                  <Globe className="size-3.5" aria-hidden />
+                  Club website
+                </a>
+              ) : (
+                <span />
+              )}
+              <span className="text-xs text-muted tabular-nums">{l.period}</span>
+            </div>
           </article>
         ))}
       </div>
@@ -210,49 +236,52 @@ function Skills() {
   );
 }
 
+/* Picks an icon for a contact link from its label; anything unknown gets a globe. */
+function ContactIcon({ label, className }: { label: string; className?: string }) {
+  if (label === "email") return <Mail className={className} aria-hidden />;
+  if (label === "github") return <GithubIcon className={className} />;
+  if (label === "linkedin") return <LinkedinIcon className={className} />;
+  return <Globe className={className} aria-hidden />;
+}
+
 function Contact() {
   return (
     <section id="contact" className="axis pt-8">
       <SectionHeading title="Contact" />
-      <p className="font-serif text-3xl text-balance italic sm:text-4xl">
+      <p className="font-serif text-4xl leading-tight text-balance italic sm:text-5xl">
         ∀ idea, <span className="text-accent">∃</span> a conversation.
       </p>
-      <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted">
-        For every idea there&apos;s a conversation worth having. Reach out to connect, discuss
-        opportunities, or collaborate on a project. Email is the fastest way to reach me.
+      <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
+        Open to connecting about opportunities, collaborations, or projects. Email is the fastest
+        way to reach me.
       </p>
-      <ul className="mt-8 max-w-xl divide-y divide-subtle border-y border-subtle font-code text-sm">
+      <ul className="mt-8 grid gap-3 sm:grid-cols-3">
         {contactLinks.map((link) => {
           const isMail = link.href.startsWith("mailto:");
           return (
-            <li key={link.label} className="flex items-center gap-4 py-3">
-              <span className="w-20 shrink-0 text-accent">{link.label}</span>
+            <li key={link.label}>
               <a
                 href={link.href}
                 {...(isMail ? {} : { target: "_blank", rel: "noopener noreferrer" })}
-                className="group flex min-w-0 flex-1 items-center justify-between gap-3 transition-colors hover:text-accent"
+                className="group flex h-full items-center gap-3.5 rounded-lg border border-subtle bg-background/60 px-4 py-3 transition-colors hover:border-accent"
               >
-                <span className="truncate">{link.display}</span>
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-accent/10 text-accent">
+                  <ContactIcon label={link.label} className="size-4" />
+                </span>
+                <span className="flex min-w-0 flex-1 flex-col">
+                  <span className="text-[11px] tracking-widest text-muted uppercase">{link.label}</span>
+                  <span className="truncate text-sm transition-colors group-hover:text-accent">{link.display}</span>
+                </span>
                 <ArrowUpRight
                   aria-hidden
                   className="size-4 shrink-0 text-muted transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
                 />
               </a>
-              {isMail && <CopyButton value={link.href.slice("mailto:".length)} label={link.label} />}
             </li>
           );
         })}
       </ul>
     </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="flex items-baseline justify-between border-t border-subtle pt-6 pb-4 font-code text-xs text-muted">
-      <span>© {new Date().getFullYear()} {profile.name}</span>
-      <span aria-label="Q.E.D." className="font-serif text-lg text-accent">∎</span>
-    </footer>
   );
 }
 
@@ -270,7 +299,7 @@ export default function Home() {
         <Leadership />
         <Skills />
         <Contact />
-        <Footer />
+        <footer aria-hidden className="border-t border-subtle" />
       </div>
     </main>
   );

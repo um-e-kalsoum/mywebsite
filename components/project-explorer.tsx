@@ -17,11 +17,11 @@ function groupByCategory(projects: Project[]) {
 
 function Screenshot({ project }: { project: Project }) {
   return (
-    <div className="relative aspect-[16/10] w-full max-w-[280px] shrink-0 overflow-hidden rounded-md border border-subtle bg-[repeating-linear-gradient(135deg,var(--grid-line)_0_1px,transparent_1px_10px)]">
+    <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-md border border-subtle bg-[repeating-linear-gradient(135deg,var(--grid-line)_0_1px,transparent_1px_10px)]">
       {project.image ? (
-        <Image src={project.image} alt={`${project.name} screenshot`} fill sizes="280px" className="object-cover" />
+        <Image src={project.image} alt={`${project.name} screenshot`} fill sizes="(min-width: 896px) 620px, 100vw" className="object-cover object-top" />
       ) : (
-        <span aria-hidden className="absolute inset-0 grid place-items-center font-serif text-3xl font-semibold text-accent italic">
+        <span aria-hidden className="absolute inset-0 grid place-items-center font-serif text-5xl font-semibold text-accent italic">
           {project.name[0]}
         </span>
       )}
@@ -66,10 +66,10 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
         <span className="ml-2 truncate">~/um-e-kalsoum/projects</span>
       </div>
 
-      <div className="grid md:h-[440px] md:grid-cols-[240px_1fr]">
+      <div className="grid md:grid-cols-[220px_1fr]">
         <nav
           aria-label="Projects"
-          className="scroll-thin flex max-h-56 flex-col gap-px overflow-y-auto border-b border-subtle p-2 text-[13px] md:max-h-none md:border-r md:border-b-0"
+          className="flex flex-col gap-px border-b border-subtle p-2 text-[13px] md:border-r md:border-b-0"
         >
           <span className="px-2 py-1 text-muted">projects/</span>
           {groups.map(([category, indexes]) => {
@@ -114,7 +114,7 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
           })}
         </nav>
 
-        <article aria-live="polite" className="scroll-thin flex min-w-0 flex-col gap-3 overflow-y-auto p-5">
+        <article aria-live="polite" className="flex min-w-0 flex-col gap-3 p-5">
           <span className="text-xs text-muted">
             projects/{slug(project.category)}/{slug(project.name)}/README.md
           </span>
