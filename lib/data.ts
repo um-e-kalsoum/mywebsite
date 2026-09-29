@@ -6,7 +6,7 @@
 
 export const profile = {
   name: "Um-e-Kalsoum Asif",
-  title: "Computer Science Student · Software Engineer",
+  title: "Computer Science Student",
   location: "Toronto, Ontario",
   email: "uasif@uoguelph.ca",
   github: "https://github.com/um-e-kalsoum",
@@ -20,6 +20,9 @@ export type ExperienceEntry = {
   company: string;
   location: string; // leave "" to hide
   period: string;
+  /* Company logo. Put the image in public/logos/ and write its path, e.g. "/logos/kenna.png".
+     Square images look best (PNG or SVG, at least 96x96). Leave "" to show the company's initials. */
+  logo: string;
 };
 
 /* TEMPLATE
@@ -28,32 +31,30 @@ export type ExperienceEntry = {
     company: "",
     location: "",
     period: "",
+    logo: "",
   },
 */
 export const experience: ExperienceEntry[] = [
   {
-    role: "Web Developer & Designer",
-    company: "Dairy Modernization",
-    location: "", // TODO: add location
-    period: "Dec 2025 – Jan 2026",
+    role: "Application Developer",
+    company: "Kenna",
+    location: "Mississauga, ON",
+    period: "May 2026 – Present",
+    logo: "/logos/kenna-logo.png",
   },
   {
     role: "Software Developer Intern",
+    company: "Dairy Modernization",
+    location: "Guelph, ON",
+    period: "January 2026 – February 2026",
+    logo: "/logos/dairy-mod-logo.jpg",
+  },
+  {
+    role: "Software Engineer Intern",
     company: "University of Guelph OVC",
-    location: "Guelph, Ontario",
-    period: "Sep 2025 – Dec 2025",
-  },
-  {
-    role: "Graphic Designer",
-    company: "Guelph Cyber Security Society",
-    location: "Guelph, Ontario",
-    period: "Sep 2025 – Present",
-  },
-  {
-    role: "Hackathon Organizer",
-    company: "Google Developer Groups",
-    location: "Guelph, Ontario",
-    period: "Sep 2024 – Present",
+    location: "Guelph, ON",
+    period: "September 2025 – December 2025",
+    logo: "/logos/ovc-logo.png",
   },
 ];
 
@@ -61,53 +62,132 @@ export const experience: ExperienceEntry[] = [
 
 export type Project = {
   name: string;
+  /* Folder the project sits in, e.g. "hackathons". Projects with the same category are grouped
+     together; folders appear in the order their first project appears in this list. */
+  category: string;
   tagline: string;
   description: string;
   tech: string[];
-  link: string;
+  /* Screenshot. Put the image in public/projects/ and write its path, e.g. "/projects/signify.png".
+     16:10 images fit best. Leave "" for a placeholder. */
+  image: string;
+  // Links. Leave any of these "" and its button is hidden. The first one filled in is highlighted.
+  site: string; // the live website you built (mainly for client work)
+  github: string;
+  devpost: string;
+  demo: string;
 };
 
-/* TEMPLATE
+/* TEMPLATES: copy the one for the folder you want into the list below.
+   To start a new folder, use any template and change `category` to the new folder's name.
+
+  --- hackathons/ ---
   {
     name: "",
+    category: "hackathons",
     tagline: "",
     description: "",
     tech: ["", ""],
-    link: "https://github.com/um-e-kalsoum/",
+    image: "",
+    site: "",
+    github: "https://github.com/um-e-kalsoum/",
+    devpost: "https://devpost.com/software/",
+    demo: "",
+  },
+
+  --- client-work/ ---
+  {
+    name: "",
+    category: "client-work",
+    tagline: "",
+    description: "",
+    tech: ["", ""],
+    image: "",
+    site: "https://",
+    github: "",
+    devpost: "",
+    demo: "",
+  },
+
+  --- personal/ ---
+  {
+    name: "",
+    category: "personal",
+    tagline: "",
+    description: "",
+    tech: ["", ""],
+    image: "",
+    site: "",
+    github: "https://github.com/um-e-kalsoum/",
+    devpost: "",
+    demo: "",
   },
 */
 export const projects: Project[] = [
   {
     name: "Signify",
+    category: "hackathons",
     tagline: "Real-time ASL interpreter",
     description:
       "Hand gesture recognition system that translates sign language to text in real time, with accessibility features like light/dark modes and adjustable text sizes.",
     tech: ["Python", "MediaPipe", "OpenCV", "scikit-learn", "React", "Vite", "Tailwind CSS"],
-    link: "https://github.com/um-e-kalsoum/technova2025",
+    image: "/logos/signify-project.png",
+    site: "",
+    github: "https://github.com/um-e-kalsoum/technova2025",
+    devpost: "https://devpost.com/software/signify-nve5tj",
+    demo: "",
   },
   {
     name: "BeautyHackxs",
+    category: "hackathons",
     tagline: "Upload, analyze, and choose smarter ingredients",
     description:
       "Full-stack app enabling barcode scanning of beauty products with AI-powered ingredient analysis and secure user authentication.",
     tech: ["React", "HTML/CSS", "SQL", "phpMyAdmin", "XAMPP", "Gemini AI"],
-    link: "https://github.com/um-e-kalsoum/beautyhackxsfinal",
+    image: "/logos/bhack-project.png",
+    site: "",
+    github: "https://github.com/um-e-kalsoum/beautyhackxsfinal",
+    devpost: "https://devpost.com/software/beautyhackxs",
+    demo: "",
   },
   {
-    name: "Online Analysis Tools Redesign",
+    name: "Online Analysis Tools Rebuild",
+    category: "client-work",
     tagline: "Molecular biology resources, modernized",
     description:
       "Redesign of Dr. Kropinski's molecular biology educational site, with a rebuilt front end for improved usability, accessibility, and technical documentation.",
     tech: ["HTML5", "CSS"],
-    link: "https://github.com/um-e-kalsoum/OATredesign",
+    image: "/logos/oat-project.png",
+    site: "https://molbiol-tools.ca/", // TODO: add the live site URL
+    github: "https://github.com/um-e-kalsoum/OATredesign",
+    devpost: "",
+    demo: "",
+  },
+  {
+    name: "Dairy Modernization",
+    category: "client-work",
+    tagline: "Molecular biology resources, modernized",
+    description:
+      "Redesign of Dr. Kropinski's molecular biology educational site, with a rebuilt front end for improved usability, accessibility, and technical documentation.",
+    tech: ["HTML5", "CSS"],
+    image: "/logos/dairy-mod-project.png",
+    site: "https://www.dairymodernization.ca/", // TODO: add the live site URL
+    github: "",
+    devpost: "",
+    demo: "",
   },
   {
     name: "Treasure Runner",
+    category: "personal",
     tagline: "Terminal-based puzzle adventure",
     description:
       "Puzzle adventure game built with a C engine and a Python curses interface, featuring interactive elements and persistent player statistics.",
     tech: ["C", "Python", "curses"],
-    link: "https://github.com/um-e-kalsoum/Treasure-Runner",
+    image: "",
+    site: "",
+    github: "https://github.com/um-e-kalsoum/Treasure-Runner",
+    devpost: "",
+    demo: "",
   },
 ];
 

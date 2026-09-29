@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, JetBrains_Mono, STIX_Two_Text } from "next/font/google";
+import { IBM_Plex_Mono, STIX_Two_Text } from "next/font/google";
 import { Nav } from "@/components/nav";
-import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const stixTwo = STIX_Two_Text({
   variable: "--font-stix",
@@ -20,8 +9,9 @@ const stixTwo = STIX_Two_Text({
   style: ["normal", "italic"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  weight: ["400", "500", "600"],
   subsets: ["latin"],
 });
 
@@ -36,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${stixTwo.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${stixTwo.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script
@@ -46,7 +36,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
         <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-grid" />
         <Nav />
-        <ThemeToggle />
         {children}
       </body>
     </html>
