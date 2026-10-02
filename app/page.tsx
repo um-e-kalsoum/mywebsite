@@ -67,8 +67,8 @@ function Header() {
         >
           <Mail className="size-5" />
         </a>
+        <span aria-label="Q.E.D." className="ml-auto font-serif text-xl leading-none text-accent">∎</span>
       </div>
-      <p aria-label="Q.E.D." className="-mt-6 text-right font-serif text-xl text-accent">∎</p>
     </header>
   );
 }
@@ -124,7 +124,7 @@ function Experience() {
                   {job.location && ` · ${job.location}`}
                 </p>
               </div>
-              <span className="font-code text-xs text-muted tabular-nums sm:pt-1">{job.period}</span>
+              <span className="mt-1.5 font-code text-xs text-muted tabular-nums sm:mt-0 sm:pt-1">{job.period}</span>
             </div>
           </li>
         ))}
@@ -159,7 +159,7 @@ function Education() {
                 </p>
                 {ed.detail && <p className="text-[13px] text-muted">{ed.detail}</p>}
               </div>
-              <span className="font-code text-xs text-muted tabular-nums sm:pt-1">{ed.period}</span>
+              <span className="mt-1.5 font-code text-xs text-muted tabular-nums sm:mt-0 sm:pt-1">{ed.period}</span>
             </div>
           </li>
         ))}
