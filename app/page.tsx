@@ -67,7 +67,8 @@ function Header() {
         >
           <Mail className="size-5" />
         </a>
-        <span aria-label="Q.E.D." className="ml-auto font-serif text-xl leading-none text-accent">∎</span>
+        {/* Drawn as a box, not the ∎ character: STIX Two has no ∎, and phones substitute a tall rectangle. */}
+        <span role="img" aria-label="Q.E.D." className="ml-auto inline-block size-3 bg-accent" />
       </div>
     </header>
   );
