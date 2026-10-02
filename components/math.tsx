@@ -5,11 +5,32 @@ import { useEffect, useRef, useState } from "react";
 /* Label and value get the same fixed width so the track sits on the figure's center line. */
 function Slider({ label, value, min, max, set }: { label: string; value: number; min: number; max: number; set: (n: number) => void }) {
   return (
-    <label className="flex items-center gap-3 text-sm text-muted">
-      <span className="w-6 text-right">{label}</span>
+    <label className="flex items-center gap-3 font-serif text-base text-muted">
+      <span className="w-6 text-right italic">{label}</span>
       <input type="range" min={min} max={max} value={value} onChange={(e) => set(+e.target.value)} className="w-40 accent-accent" />
-      <span className="w-6 font-mono text-foreground">{value}</span>
+      <span className="w-6 text-foreground tabular-nums">{value}</span>
     </label>
+  );
+}
+
+/* SVG path for r = cos(kθ) at radius R, centred on the origin. */
+function rosePath(k: number, R: number) {
+  let d = "";
+  for (let i = 0; i <= 720; i++) {
+    const th = (i / 720) * 2 * Math.PI;
+    const r = Math.cos(k * th) * R;
+    d += `${i ? "L" : "M"}${(r * Math.cos(th)).toFixed(2)} ${(r * Math.sin(th)).toFixed(2)}`;
+  }
+  return d;
+}
+
+/* Footer: tiny copy of the hero rose, same two layers and colors. The 1px outline stays crisp at any size. */
+export function MiniRose({ k = 5, className = "" }: { k?: number; className?: string }) {
+  return (
+    <svg viewBox="-50 -50 100 100" aria-hidden className={className}>
+      <path d={rosePath(k, 46)} fill="var(--accent)" fillOpacity={0.18} stroke="var(--accent)" strokeOpacity={0.95} strokeWidth={1} vectorEffect="non-scaling-stroke" />
+      <path d={rosePath(k, 46 * 0.62)} fill="var(--accent-2)" fillOpacity={0.16} stroke="var(--accent-2)" strokeOpacity={0.9} strokeWidth={1} vectorEffect="non-scaling-stroke" />
+    </svg>
   );
 }
 
@@ -68,8 +89,10 @@ export function BloomRose({ className = "" }: { className?: string }) {
     <figure className={`${className} flex flex-col items-center`}>
       <canvas ref={ref} className="aspect-[4/3] w-full" role="img" aria-label={`Polar rose with ${label}`} />
       <Slider label="k" value={k} min={1} max={6} set={setK} />
-      <figcaption className="mt-2 flex flex-wrap items-center justify-center gap-x-2 text-center text-xs text-muted">
-        <span>r = cos({k}θ)</span>
+      <figcaption className="mt-2 flex flex-wrap items-center justify-center gap-x-2 text-center font-serif text-sm text-muted">
+        <span>
+          <i>r</i> = cos({k}<i>θ</i>)
+        </span>
         <span aria-hidden>·</span>
         <span>{label}</span>
         <span aria-hidden>·</span>

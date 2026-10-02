@@ -17,9 +17,9 @@ function groupByCategory(projects: Project[]) {
 
 function Screenshot({ project }: { project: Project }) {
   return (
-    <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-md border border-subtle bg-[repeating-linear-gradient(135deg,var(--grid-line)_0_1px,transparent_1px_10px)]">
+    <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-md border border-subtle bg-[repeating-linear-gradient(135deg,var(--grid-line)_0_1px,transparent_1px_10px)]">
       {project.image ? (
-        <Image src={project.image} alt={`${project.name} screenshot`} fill sizes="(min-width: 896px) 620px, 100vw" className="object-cover object-top" />
+        <Image src={project.image} alt={`${project.name} screenshot`} fill loading="eager" sizes="(min-width: 896px) 620px, 100vw" className="object-cover object-top" />
       ) : (
         <span aria-hidden className="absolute inset-0 grid place-items-center font-serif text-5xl font-semibold text-accent italic">
           {project.name[0]}

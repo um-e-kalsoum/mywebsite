@@ -8,7 +8,7 @@ export const profile = {
   name: "Um-e-Kalsoum Asif",
   title: "Computer Science Student",
   location: "Toronto, Ontario",
-  email: "uasif@uoguelph.ca",
+  email: "kalsoumasif1@gmail.com",
   github: "https://github.com/um-e-kalsoum",
   linkedin: "https://www.linkedin.com/in/um-e-kalsoum-asif-393701316/",
 };
@@ -69,7 +69,7 @@ export type Project = {
   description: string;
   tech: string[];
   /* Screenshot. Put the image in public/projects/ and write its path, e.g. "/projects/signify.png".
-     16:10 images fit best. Leave "" for a placeholder. */
+     16:9 images fit best (e.g. 1600x900). Leave "" for a placeholder. */
   image: string;
   // Links. Leave any of these "" and its button is hidden. The first one filled in is highlighted.
   site: string; // the live website you built (mainly for client work)
@@ -127,9 +127,9 @@ export const projects: Project[] = [
   {
     name: "Signify",
     category: "hackathons",
-    tagline: "Real-time ASL interpreter",
+    tagline: "Breaking down barriers, one sign at a time.",
     description:
-      "Hand gesture recognition system that translates sign language to text in real time, with accessibility features like light/dark modes and adjustable text sizes.",
+      "Real-time sign language interpreter using computer vision and machine learning to translate hand gestures into text for accessible communication.",
     tech: ["Python", "MediaPipe", "OpenCV", "scikit-learn", "React", "Vite", "Tailwind CSS"],
     image: "/logos/signify-project.png",
     site: "",
@@ -140,11 +140,11 @@ export const projects: Project[] = [
   {
     name: "BeautyHackxs",
     category: "hackathons",
-    tagline: "Upload, analyze, and choose smarter ingredients",
+    tagline: "Know what’s in your beauty products.",
     description:
-      "Full-stack app enabling barcode scanning of beauty products with AI-powered ingredient analysis and secure user authentication.",
-    tech: ["React", "HTML/CSS", "SQL", "phpMyAdmin", "XAMPP", "Gemini AI"],
-    image: "/logos/bhack-project.png",
+      "Full-stack beauty app that scans product barcodes, analyzes ingredient data, flags potentially harmful ingredients, and gives users a quick, clear safety breakdown.",
+    tech: ["Gemini AI", "SQL", "phpMyAdmin", "XAMPP", "React", "Javascript", "HTML/CSS"],
+    image: "/logos/beauty-hack-project.png",
     site: "",
     github: "https://github.com/um-e-kalsoum/beautyhackxsfinal",
     devpost: "https://devpost.com/software/beautyhackxs",
@@ -153,10 +153,10 @@ export const projects: Project[] = [
   {
     name: "Online Analysis Tools Rebuild",
     category: "client-work",
-    tagline: "Molecular biology resources, modernized",
+    tagline: "25 years of molecular biology, rebuilt for today.",
     description:
-      "Redesign of Dr. Kropinski's molecular biology educational site, with a rebuilt front end for improved usability, accessibility, and technical documentation.",
-    tech: ["HTML5", "CSS"],
+      "Rebuilt a 25-year-old molecular biology site with Dr. Andrew Kropinski, preserving scientific accuracy while improving usability, accessibility, documentation, and maintainability.",
+    tech: ["Javascript" , "HTML5/CSS"],
     image: "/logos/oat-project.png",
     site: "https://molbiol-tools.ca/", // TODO: add the live site URL
     github: "https://github.com/um-e-kalsoum/OATredesign",
@@ -166,10 +166,10 @@ export const projects: Project[] = [
   {
     name: "Dairy Modernization",
     category: "client-work",
-    tagline: "Molecular biology resources, modernized",
+    tagline: "Building digital tools around real industry needs.",
     description:
-      "Redesign of Dr. Kropinski's molecular biology educational site, with a rebuilt front end for improved usability, accessibility, and technical documentation.",
-    tech: ["HTML5", "CSS"],
+      "Collaborated with 5+ non-technical stakeholders to turn their needs into website features and workflows, then trained them to manage the platform independently.",
+    tech: ["Wordpress"],
     image: "/logos/dairy-mod-project.png",
     site: "https://www.dairymodernization.ca/", // TODO: add the live site URL
     github: "",
@@ -179,10 +179,10 @@ export const projects: Project[] = [
   {
     name: "Treasure Runner",
     category: "personal",
-    tagline: "Terminal-based puzzle adventure",
+    tagline: "A terminal-first take on puzzle games.",
     description:
-      "Puzzle adventure game built with a C engine and a Python curses interface, featuring interactive elements and persistent player statistics.",
-    tech: ["C", "Python", "curses", "Docker"],
+      "Built a terminal puzzle game with a C engine and Python interface, including room traversal, portals, object interactions, and persistent player progress.",
+    tech: ["C", "Python", "curses", "JSON", "Docker", "Make"],
     image: "/logos/terminal-project.png",
     site: "",
     github: "https://github.com/um-e-kalsoum/Treasure-Runner",
@@ -198,7 +198,7 @@ export type EducationEntry = {
   school: string;
   location: string; // leave "" to hide
   period: string;
-  highlights: string[]; // shown as pink tags, e.g. specialization, minor, honours. [] to hide
+  detail: string; // extra line under the school, e.g. specialization and minor. "" to hide
   /* School logo. Put the image in public/logos/ and write its path, e.g. "/logos/uoguelph.png".
      Square images look best. Leave "" to show the school's initials. */
   logo: string;
@@ -210,7 +210,7 @@ export type EducationEntry = {
     school: "",
     location: "",
     period: "",
-    highlights: ["", ""],
+    detail: "",
     logo: "",
   },
 */
@@ -220,7 +220,7 @@ export const education: EducationEntry[] = [
     school: "University of Guelph",
     location: "Guelph, ON",
     period: "Expected 2029",
-    highlights: ["Cybersecurity specialization", "Mathematics minor"],
+    detail: "Cybersecurity specialization & Mathematics minor",
     logo: "/logos/uofg.png",
   },
 ];
@@ -251,9 +251,9 @@ export type LeadershipEntry = {
 export const leadership: LeadershipEntry[] = [
   {
     org: "Guelph Cyber Security Society",
-    role: "gryphCTF Organizer",
+    role: "Marketing & Events",
     description:
-      "Organized the University of Guelph's first capture-the-flag competition with a $1,000+ prize pool, then wrote the official walkthrough covering each challenge's vulnerability and exploitation technique.",
+      "Helped grow a 100+ member cybersecurity community through marketing, outreach, and events that regularly brought in 80+ students",
     period: "September 2025 – Present",
     logo: "/logos/gcss-logo.png",
     website: "https://guelphcss.com/", // TODO: add the club website
@@ -262,7 +262,7 @@ export const leadership: LeadershipEntry[] = [
     org: "Google Developer Groups",
     role: "Hackathon Organizer",
     description:
-      "Led sponsorship research and partner relationships to keep student hackathons funded. Co-built BeautyHackxs, a GDGHacks '25 winner.",
+      "Helped bring in 5+ sponsors for GDGHacks 2026 by reaching out to companies, pitching the event, and managing sponsor relationships",
     period: "September 2025 – April 2026",
     logo: "/logos/gdg-logo.png",
     website: "https://www.gdgguelph.com/", // TODO: add the club website
@@ -278,7 +278,7 @@ export const skills: Record<string, string[]> = {
   Languages: ["Bash", "C", "HTML/CSS", "Java", "JavaScript", "Python", "SQL", "TypeScript"],
   "Frameworks & Libraries": ["FastAPI", "JUnit", "MediaPipe", "Next.js", "Node.js", "OpenCV", "Pandas", "React", "scikit-learn", "Tailwind CSS"],
   Databases: ["MongoDB", "MySQL", "PostgreSQL"],
-  "Tools & Platforms": ["Bitbucket", "Confluence", "Docker", "Git", "Jenkins", "Jira", "Linux", "Tableau", "WordPress"],
+  "Tools & Platforms": ["Bitbucket", "Confluence", "Docker", "Git", "Jenkins", "Jira", "Linux", "Make", "Tableau", "WordPress"],
 };
 
 /* ------------------------------------------------------------------- Contact */

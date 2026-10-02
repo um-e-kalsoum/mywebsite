@@ -2,7 +2,7 @@ import { ArrowUpRight, Globe, Mail } from "lucide-react";
 import Image from "next/image";
 import { IrisText } from "@/components/iris-text";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
-import { BloomRose } from "@/components/math";
+import { BloomRose, MiniRose } from "@/components/math";
 import { ProjectExplorer } from "@/components/project-explorer";
 import { contactLinks, education, experience, leadership, profile, projects, skills } from "@/lib/data";
 
@@ -150,26 +150,16 @@ function Education() {
         {education.map((ed) => (
           <li key={`${ed.school}-${ed.degree}`} className="flex items-start gap-4 py-4 first:pt-0">
             <CompanyLogo src={ed.logo} company={ed.school} />
-            <div className="flex min-w-0 flex-1 flex-col gap-2.5">
-              <div className="grid gap-x-6 gap-y-0.5 sm:grid-cols-[1fr_auto]">
-                <div>
-                  <h3 className="text-[15px] font-semibold tracking-tight">{ed.degree}</h3>
-                  <p className="text-[13px] text-muted">
-                    <span className="text-accent">@</span> {ed.school}
-                    {ed.location && ` · ${ed.location}`}
-                  </p>
-                </div>
-                <span className="text-xs text-muted tabular-nums sm:pt-1">{ed.period}</span>
+            <div className="grid min-w-0 flex-1 gap-x-6 gap-y-0.5 sm:grid-cols-[1fr_auto]">
+              <div>
+                <h3 className="text-[15px] font-semibold tracking-tight">{ed.degree}</h3>
+                <p className="text-[13px] text-muted">
+                  <span className="text-accent">@</span> {ed.school}
+                  {ed.location && ` · ${ed.location}`}
+                </p>
+                {ed.detail && <p className="text-[13px] text-muted">{ed.detail}</p>}
               </div>
-              {ed.highlights.length > 0 && (
-                <ul className="flex flex-wrap gap-1.5">
-                  {ed.highlights.map((h) => (
-                    <li key={h} className="rounded border border-accent/45 bg-accent/10 px-1.5 py-0.5 text-[11px] text-accent">
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <span className="font-code text-xs text-muted tabular-nums sm:pt-1">{ed.period}</span>
             </div>
           </li>
         ))}
@@ -248,12 +238,11 @@ function Contact() {
   return (
     <section id="contact" className="axis pt-8">
       <SectionHeading title="Contact" />
-      <p className="font-serif text-4xl leading-tight text-balance italic sm:text-5xl">
+      <p className="font-serif text-4xl leading-tight text-balance sm:text-5xl">
         ∀ idea, <span className="text-accent">∃</span> a conversation.
       </p>
       <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
-        Open to connecting about opportunities, collaborations, or projects. Email is the fastest
-        way to reach me.
+        For every idea, a conversation follows
       </p>
       <ul className="mt-8 grid gap-3 sm:grid-cols-3">
         {contactLinks.map((link) => {
@@ -299,7 +288,15 @@ export default function Home() {
         <Leadership />
         <Skills />
         <Contact />
-        <footer aria-hidden className="border-t border-subtle" />
+        <footer className="flex justify-end border-t border-subtle pt-6 text-xs text-muted">
+          <p className="flex flex-wrap items-center justify-end gap-2.5">
+            Computer Science
+            <MiniRose k={3} className="size-[13px]" />
+            Cybersecurity
+            <MiniRose k={4} className="size-[13px]" />
+            Mathematics
+          </p>
+        </footer>
       </div>
     </main>
   );
