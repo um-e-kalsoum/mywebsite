@@ -150,7 +150,7 @@ export const projects: Project[] = [
     category: "hackathons",
     tagline: "Connecting the dots in your health journey.",
     description: "AI-powered healthcare platform that connects medical history and symptom tracking to generate personalized, evidence-backed appointment summaries for better patient care.",
-    tech: ["Snowflake", "Llama", "React", "Typescript", "node.js", "next.js", "SQL", "recharts"],
+    tech: ["Snowflake", "Llama", "React", "Typescript", "Node.js", "Next.js", "SQL", "recharts"],
     image: "/logos/care-trace-project.png",
     site: "",
     github: "https://github.com/um-e-kalsoum/CareTrace",
