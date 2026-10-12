@@ -8,6 +8,10 @@
   --grid-line: rgba(10, 10, 10, 0.05);
   --accent: #db2777;
   --accent-2: #f472b6;
+  /* Devpost-style winner gold; same in both themes */
+  --win: #f2c15b;
+  --win-ink: #5b4716;
+  --win-star: #f0b429;
 }
 
 @theme inline {
@@ -16,6 +20,9 @@
   --color-muted: var(--muted);
   --color-subtle: var(--subtle);
   --color-accent: var(--accent);
+  --color-win: var(--win);
+  --color-win-ink: var(--win-ink);
+  --color-win-star: var(--win-star);
   --font-sans: var(--font-plex-mono), ui-monospace, monospace;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
   --font-serif: var(--font-stix), Georgia, serif;
@@ -55,6 +62,9 @@ body {
 html { scroll-behavior: smooth; }
 section { scroll-margin-top: 5rem; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* winner sash on project screenshots: bold sans like Devpost's, not the site's mono */
+.win-sash { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
 
 /* thin number-line rule with ticks on the grid's 32px rhythm */
 .axis {

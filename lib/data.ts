@@ -76,6 +76,12 @@ export type Project = {
   github: string;
   devpost: string;
   demo: string;
+  /* Optional. Add this to a project that won a prize: it gets a gold WINNER sash on its screenshot,
+     a gold category badge, and a yellow star in the file list. Leave it out for everything else. */
+  award?: {
+    event: string; // shown on the sash under WINNER, e.g. "ElleHacks"
+    category: string; // the prize you won, e.g. "Best Open-Source AI Project with Snowflake"
+  };
 };
 
 /* TEMPLATES: copy the one for the folder you want into the list below.
@@ -93,6 +99,21 @@ export type Project = {
     github: "https://github.com/um-e-kalsoum/",
     devpost: "https://devpost.com/software/",
     demo: "",
+  },
+
+  --- hackathons/ (winner) ---
+  {
+    name: "",
+    category: "hackathons",
+    tagline: "",
+    description: "",
+    tech: ["", ""],
+    image: "",
+    site: "",
+    github: "https://github.com/um-e-kalsoum/",
+    devpost: "https://devpost.com/software/",
+    demo: "",
+    award: { event: "", category: "" },
   },
 
   --- client-work/ ---
@@ -124,6 +145,19 @@ export type Project = {
   },
 */
 export const projects: Project[] = [
+  {
+    name: "CareTrace",
+    category: "hackathons",
+    tagline: "Connecting the dots in your health journey.",
+    description: "AI-powered healthcare platform that connects medical history and symptom tracking to generate personalized, evidence-backed appointment summaries for better patient care.",
+    tech: ["Snowflake", "Llama", "React", "Typescript", "node.js", "next.js", "SQL", "recharts"],
+    image: "/logos/care-trace-project.png",
+    site: "",
+    github: "https://github.com/um-e-kalsoum/CareTrace",
+    devpost: "https://www.mlh.com/events/hacktoberfest-hack-day-toronto-x-ellehacks/submissions/01a12798-1c34-362e-ad07-86c555d910ca",
+    demo: "https://www.youtube.com/watch?v=bkcg9mivp4Y",
+    award: { event: "ElleHacks", category: "Best Open-Source AI Project with Snowflake" },
+  },
   {
     name: "Signify",
     category: "hackathons",
@@ -278,7 +312,7 @@ export const skills: Record<string, string[]> = {
   Languages: ["Bash", "C", "HTML/CSS", "Java", "JavaScript", "Python", "SQL", "TypeScript"],
   "Frameworks & Libraries": ["FastAPI", "JUnit", "MediaPipe", "Next.js", "Node.js", "OpenCV", "Pandas", "React", "scikit-learn", "Tailwind CSS"],
   Databases: ["MongoDB", "MySQL", "PostgreSQL"],
-  "Tools & Platforms": ["Bitbucket", "Confluence", "Docker", "Git", "Jenkins", "Jira", "Linux", "Make", "Tableau", "WordPress"],
+  "Tools & Platforms": ["Bitbucket", "Confluence", "Docker", "Git", "Jenkins", "Jira", "Linux", "Snowflake", "Make", "Tableau", "WordPress"],
 };
 
 /* ------------------------------------------------------------------- Contact */

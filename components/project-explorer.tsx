@@ -25,7 +25,29 @@ function Screenshot({ project }: { project: Project }) {
           {project.name[0]}
         </span>
       )}
+      {project.award && (
+        <span
+          aria-hidden
+          className="win-sash pointer-events-none absolute top-[30px] -right-12 flex w-[200px] rotate-45 flex-col gap-0.5 bg-win py-1.5 text-center text-[15px] leading-none font-extrabold tracking-[0.08em] text-win-ink uppercase shadow-sm"
+        >
+          Winner
+          <small className="text-[9px] font-semibold tracking-[0.1em] opacity-85">{project.award.event}</small>
+        </span>
+      )}
     </div>
+  );
+}
+
+/* README-style shield: "★ category | Best ... Project". */
+function AwardBadge({ award }: { award: NonNullable<Project["award"]> }) {
+  return (
+    <p className="inline-flex max-w-full self-start overflow-hidden rounded-[3px] border border-win text-[11px] leading-[1.3]">
+      <span className="shrink-0 bg-win px-[7px] py-1 font-bold text-win-ink">★ category</span>
+      <span className="min-w-0 px-[7px] py-1">
+        <span className="sr-only">Winner at {award.event}: </span>
+        {award.category}
+      </span>
+    </p>
   );
 }
 
@@ -104,6 +126,14 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
                             {j === indexes.length - 1 ? "└" : "├"}
                           </span>
                           <span className="truncate">{slug(projects[i].name)}/</span>
+                          {projects[i].award && (
+                            <span
+                              title={`Winner: ${projects[i].award.category}, ${projects[i].award.event}`}
+                              className="ml-auto shrink-0 text-xs leading-none text-win-star"
+                            >
+                              ★<span className="sr-only"> (award winner)</span>
+                            </span>
+                          )}
                         </button>
                       </li>
                     ))}
@@ -118,6 +148,7 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
           <span className="text-xs text-muted">
             projects/{slug(project.category)}/{slug(project.name)}/README.md
           </span>
+          {project.award && <AwardBadge award={project.award} />}
           <Screenshot project={project} />
           <div>
             <h3 className="font-semibold tracking-tight">{project.name}</h3>
