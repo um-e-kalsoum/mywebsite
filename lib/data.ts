@@ -169,7 +169,7 @@ export const projects: Project[] = [
     site: "",
     github: "https://github.com/um-e-kalsoum/technova2025",
     devpost: "https://devpost.com/software/signify-nve5tj",
-    demo: "",
+    demo: "https://www.youtube.com/watch?v=IbKcPy-5eZM",
   },
   {
     name: "BeautyHackxs",
