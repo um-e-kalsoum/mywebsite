@@ -36,7 +36,7 @@ export type ExperienceEntry = {
 */
 export const experience: ExperienceEntry[] = [
   {
-    role: "Application Developer",
+    role: "Software Engineer intern",
     company: "Kenna",
     location: "Mississauga, ON",
     period: "May 2026 – Present",
@@ -55,6 +55,13 @@ export const experience: ExperienceEntry[] = [
     location: "Guelph, ON",
     period: "September 2025 – December 2025",
     logo: "/logos/ovc-logo.png",
+  },
+  {
+    role: "Meta Production Engineer Fellow",
+    company: "Meta x MLH",
+    location: "Remote",
+    period: "June 2026 - August 2026",
+    logo: "/logos/mlh-fellowship-logo.png",
   },
 ];
 
