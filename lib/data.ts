@@ -39,7 +39,14 @@ export const experience: ExperienceEntry[] = [
     role: "Application Developer",
     company: "Kenna",
     location: "Mississauga, ON",
-    period: "May 2026 – Present",
+    period: "September 2026 – Present",
+    logo: "/logos/kenna-logo.png",
+  },
+  {
+    role: "Data Integration Analyst",
+    company: "Kenna",
+    location: "Mississauga, ON",
+    period: "May 2026 – August 2026",
     logo: "/logos/kenna-logo.png",
   },
   {
